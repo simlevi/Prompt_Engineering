@@ -1,0 +1,40 @@
+A Megoldás Áttekintése: Mit csinál ez a robot?
+A program egy szövegtömörítő. Ahelyett, hogy leírná azt, hogy "piros alma, piros alma, piros alma", egyszerűen feljegyzi, hogy "3 piros alma".
+Ha a robot megkapja ezt a szöveget: AAABBBCCDAA, akkor észreveszi az ismétlődéseket, és átalakítja erre: A3B3C2D1A2 (vagyis 3 db A, 3 db B, 2 db C, 1 db D, 2 db A).
+
+A kód három fő "részlegből" (programozói nyelven: metódusból) áll. Nézzük, melyik mit csinál!
+
+1. A Tömörítő Részleg (ProcessString)
+Ez a kód "agya", itt történik a tényleges munka.
+
+Ellenőrzés: A kód legelső lépése (if (string.IsNullOrEmpty(input))), hogy megnézi, kapott-e egyáltalán szöveget. Ha a kezébe nyomunk egy üres papírt, akkor egyszerűen visszaad egy üres papírt, és nem dolgozik feleslegesen.
+
+A "Jegyzetfüzet" előkészítése: A StringBuilder egy olyan speciális digitális füzet, amibe nagyon gyorsan és hatékonyan tud a gép újabb betűket és számokat írni.
+
+A Számláló: Létrehoz egy számlálót (int count = 1;), ami alapból 1-en áll. (Hiszen ha elkezdünk olvasni egy betűt, abból 1 darab már biztosan van).
+
+Az Olvasás (Ciklus): A for szócska egy ismétlődő folyamatot (ciklust) jelent. A gép elkezdi betűről betűre olvasni a szöveget, a második betűtől indulva.
+
+Ha a most olvasott betű megegyezik az előzővel (pl. az 'A' után megint egy 'A' jön), akkor húz egy strigulát: hozzáad egyet a számlálóhoz.
+
+Ha a most olvasott betű eltér az előzőtől (pl. az 'A' betűk után jön egy 'B'), akkor megáll. Leírja a jegyzetfüzetébe az előző betűt és a számot (pl. A3), majd a számlálót visszaállítja 1-re, és elkezdi számolni az új betűt.
+
+A Vége: Amikor a szöveg végére ér, az utolsó megvizsgált betűt és annak számát is beírja a füzetbe, majd az egészet odaadja nekünk végeredményként.
+
+2. A Mérleg Részleg (CalculateRatio)
+Miután a tömörítő végzett, jó lenne tudni, hogy mennyit spóroltunk. Ez a részleg egy egyszerű matematikai műveletet végez.
+
+Megnézi a régi, eredeti szöveg hosszát (hogy hány karakterből állt).
+
+Megnézi az új, összenyomott szöveg hosszát.
+
+Elosztja az új hosszt a régi hosszal. Így kapunk egy arányszámot (például ha a felére csökkent a szöveg, akkor 0.5 lesz az eredmény).
+
+3. A Fővezérlő (Main)
+Minden programnak kell egy indítógomb, egy kiindulási pont. A C# nyelvben ez mindig a Main nevű rész.
+
+Adat megadása: Itt mondjuk meg a gépnek, hogy mi legyen a tesztszöveg (jelen esetben az "AAABBBCCDAA").
+
+Munka kiadása: Ez a rész szól a Tömörítőnek és a Mérlegnek, hogy kezdjenek el dolgozni a megadott szöveggel.
+
+Eredményhirdetés: A Console.WriteLine parancsok feladata, hogy a gép kiírja a képernyőnkre, amit talált. Kiírja az eredeti szöveget, a tömörített verziót, és végül az arányt (kerekítve 2 tizedesjegyre, ezt jelenti az F2).
